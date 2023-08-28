@@ -1,5 +1,20 @@
-import "./App.css"
+import { useState, useEffect } from "react";
+import "./App.css";
 
 export const App = () => {
-  return <div>Hello World!</div>
-}
+  const [newJoke, setNewJoke] = useState("");
+
+  return (
+    <div>
+      <input
+        className=""
+        type="text"
+        value={newJoke}
+        placeholder="Enter a new joke..."
+        onChange={(event) => {
+          setNewJoke(event.target.value);
+        }}
+      />
+    </div>
+  );
+};
