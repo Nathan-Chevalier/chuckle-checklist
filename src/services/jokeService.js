@@ -1,3 +1,9 @@
+export const getAllJokes = () => {
+  return fetch("http://localhost:8088/jokes").then((response) =>
+    response.json()
+  );
+};
+
 const transientState = new Map();
 transientState.set("text", "");
 transientState.set("told", false);

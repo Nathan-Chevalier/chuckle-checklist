@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { saveJoke, setJoke } from "./services/jokeService";
+import { getAllJokes, saveJoke, setJoke } from "./services/jokeService";
 import stevePic from "./assets/steve.png";
 
 export const App = () => {
   const [newJoke, setNewJoke] = useState("");
+  const [allJokes, setAllJokes] = useState([]);
+
+  useEffect(() => {
+    getAllJokes().then((jokesArray) => {
+      setAllJokes(jokesArray);
+    });
+  }, [newJoke]);
 
   return (
     <>
@@ -13,7 +20,7 @@ export const App = () => {
           <div className="app-heading-circle">
             <img className="app-logo" src={stevePic} alt="Good job Steve" />
           </div>
-          <h1 className="app-heading-text">Chuckle Checklist</h1>
+          <h1 className="app-heading-text">Chunckle Chencklist</h1>
         </div>
 
         <div className="joke-add-form">
