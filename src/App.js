@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { getAllJokes, saveJoke, setJoke } from "./services/jokeService";
+import {
+  getAllJokes,
+  setJokeTold,
+  setJoke,
+  setJokeUntold,
+  deleteJoke,
+} from "./services/jokeService";
 import stevePic from "./assets/steve.png";
 
 export const App = () => {
@@ -20,7 +26,6 @@ export const App = () => {
   useEffect(() => {
     jokeUpdate();
   }, [newJoke]);
-
   // ? Sets filtered states for told & untold jokes
   useEffect(() => {
     const toldFilter = allJokes.filter((toldJoke) => toldJoke.told === true);
@@ -40,7 +45,6 @@ export const App = () => {
           </div>
           <h1 className="app-heading-text">Chuckle Checklist</h1>
         </div>
-
         <div className="joke-add-form">
           <div className="app-heading">
             <h2>Add Joke:</h2>
@@ -74,9 +78,28 @@ export const App = () => {
             </div>
             <ul>
               {untoldJokes.map((joke) => {
+                const API = `http://localhost:8088/jokes/` + joke.id;
                 return (
                   <li className="joke-list-item" key={joke.id}>
                     <p className="joke-list-item-text">{joke.text}</p>
+                    <button
+                      className=""
+                      onClick={() => {
+                        setJokeTold(joke.text, API);
+                        jokeUpdate();
+                      }}
+                    >
+                      TOLD
+                    </button>
+                    <button
+                      className=""
+                      onClick={() => {
+                        deleteJoke(API);
+                        jokeUpdate();
+                      }}
+                    >
+                      DELETE
+                    </button>
                   </li>
                 );
               })}
@@ -91,9 +114,28 @@ export const App = () => {
             </div>
             <ul>
               {toldJokes.map((joke) => {
+                const API = `http://localhost:8088/jokes/` + joke.id;
                 return (
                   <li className="joke-list-item" key={joke.id}>
                     <p className="joke-list-item-text">{joke.text}</p>
+                    <button
+                      className=""
+                      onClick={() => {
+                        setJokeUntold(joke.text, API);
+                        jokeUpdate();
+                      }}
+                    >
+                      UNTOLD
+                    </button>
+                    <button
+                      className=""
+                      onClick={() => {
+                        deleteJoke(API);
+                        jokeUpdate();
+                      }}
+                    >
+                      DELETE
+                    </button>
                   </li>
                 );
               })}
