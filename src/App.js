@@ -89,7 +89,7 @@ export const App = () => {
                         jokeUpdate();
                       }}
                     >
-                      TOLD
+                      <i class="fa-solid fa-arrows-turn-right"></i>
                     </button>
                     <button
                       className=""
@@ -98,7 +98,7 @@ export const App = () => {
                         jokeUpdate();
                       }}
                     >
-                      DELETE
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                   </li>
                 );
@@ -125,7 +125,7 @@ export const App = () => {
                         jokeUpdate();
                       }}
                     >
-                      UNTOLD
+                      <i class="fa-solid fa-arrows-turn-right fa-flip-horizontal"></i>
                     </button>
                     <button
                       className=""
@@ -134,7 +134,7 @@ export const App = () => {
                         jokeUpdate();
                       }}
                     >
-                      DELETE
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                   </li>
                 );
